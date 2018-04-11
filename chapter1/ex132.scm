@@ -24,8 +24,8 @@
 (define (factorial n)
     (define (identity x) x)
     (define (inc a) (+ a 1))
-    ; We can use the accumulate-recursive procedure in place of the 
-    ; below procedure instead
+    ; We can also use the accumulate-recursive procedure in place of the 
+    ; below procedure
     (accumulate-iterative * 1 identity 1 inc n)
 )
 
