@@ -20,3 +20,13 @@
     )
     (iter a 1)
 )
+
+; Adding implementation of factorial method to compute factorial using
+; product implementations
+(define (factorial n)
+    (define (identity a) a)
+    (define (inc b) (+ b 1))
+    ; Using product-recursive in place of product-iterative below
+    ; will also work
+    (product-iterative identity 1 inc n)
+)
