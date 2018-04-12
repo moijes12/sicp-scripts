@@ -30,3 +30,20 @@
     ; will also work
     (product-iterative identity 1 inc n)
 )
+
+; Using product to compute the approximations to pi using the formula
+; pi / 4 = (2 * 4 * 4 * 6 * 6 * 8 * 8 * ...) / (3 * 3 * 5 * 5 * 7 * 7 * ...)
+; This is according to Wallis' formula see 
+; https://en.wikipedia.org/wiki/Wallis_product
+; The solution below has largely been copied from
+; http://www.billthelizard.com/2010/05/sicp-exercise-131-product-of-series.html
+; The solution I had come up with did not scale though it did work for values 
+; of n till 84.  
+(define (pi n)
+    ; n is the number of terms to which we wish to approximate
+    (define (square n) (* n n))
+    (define (term_numerator n) (* 4.0 (square n)))
+    (define (term_denominator n) (- (* 4.0 (square n)) 1))
+    (define (term n) (/ (term_numerator n) (term_denominator n)))
+    (* 2.0 (product-recursive term 1 inc n))
+)
