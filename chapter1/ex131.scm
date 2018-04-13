@@ -51,3 +51,19 @@
     (define (term n) (/ (term_numerator n) (term_denominator n)))
     (* 2.0 (product-recursive term 1 inc n))
 )
+
+; An implementation which comes close to the exact series asked in the 
+; question 
+(define (pi2 n)
+    ; n is the number of terms to which we wish to approximate
+    (define (square n) (* n n))
+    (define (double n) (* 2 n))
+    (define (term_numerator k)
+        (if (or (= k 1)(= k n)) (double k) (square (double k)))
+    )
+    (define (term_denominator k)
+        (if (= k n) 1 (square (+ (double k) 1)))
+    )
+    (define (term n) (/ (* 1.0 (term_numerator n)) (term_denominator n)))
+    (* 4.0 (product-iterative term 1 inc n))
+)
