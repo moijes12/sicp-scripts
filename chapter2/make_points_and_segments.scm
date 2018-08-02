@@ -1,4 +1,5 @@
 ;; Ex2.2
+;; Make points, segments and get the midpoints of the segment
 
 (define make-point cons)
 (define x-point car)
